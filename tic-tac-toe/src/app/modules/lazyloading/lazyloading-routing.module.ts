@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LazyloadingModule } from './lazyloading.module';
 import { HeaderComponent } from 'src/app/components/header/header.component';
 import { FooterComponent } from 'src/app/components/footer/footer.component';
 import { HomeLazyComponent } from './../../components/home-lazy/home-lazy.component';
@@ -8,12 +7,21 @@ import { HomeLazyComponent } from './../../components/home-lazy/home-lazy.compon
 const routes: Routes = [
   {
     path: '',
-    component: HomeLazyComponent
+    component: HomeLazyComponent,
+    children: [
+      {
+        path: 'header',
+        component: HeaderComponent
+      },{
+        path: 'footer',
+        component: FooterComponent
+      }
+    ]
   }
 ];
 
 @NgModule({
-  declarations: [FooterComponent, HeaderComponent],
+  declarations: [ HomeLazyComponent],
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
